@@ -1,0 +1,29 @@
+services:
+  wix-backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.wix-backend
+    env_file:
+      - ../.env
+    ports:
+      - "3000:3000"
+  dashboard-bridge:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.wix-backend
+    command: ["node", "../dashboard-bridge/dist/index.js"]
+    env_file:
+      - ../.env
+    ports:
+      - "3001:3001"
+    profiles: ["full"]
+  browser-worker:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.wix-backend
+    command: ["node", "../browser-worker/dist/index.js"]
+    env_file:
+      - ../.env
+    ports:
+      - "3002:3002"
+    profiles: ["full"]

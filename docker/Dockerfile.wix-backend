@@ -1,0 +1,17 @@
+FROM node:20-alpine AS base
+WORKDIR /workspace
+RUN corepack enable && corepack prepare pnpm@9.12.0 --activate
+
+FROM base AS build
+COPY pnpm-workspace.yaml package.json tsconfig.base.json ./
+COPY packages ./packages
+COPY apps/wix-backend ./apps/wix-backend
+RUN pnpm install --frozen-lockfile=false
+RUN pnpm -r --filter "./packages/**" build && pnpm --filter @wix-mcp/wix-backend build
+
+FROM base AS runtime
+ENV NODE_ENV=production
+COPY --from=build /workspace /workspace
+WORKDIR /workspace/apps/wix-backend
+EXPOSE 3000
+CMD ["node", "dist/index.js"]

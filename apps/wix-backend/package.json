@@ -1,0 +1,26 @@
+{
+  "name": "@wix-mcp/wix-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@wix-mcp/audit": "workspace:*",
+    "@wix-mcp/config": "workspace:*",
+    "@wix-mcp/core": "workspace:*",
+    "@wix-mcp/wix-auth": "workspace:*",
+    "@wix-mcp/wix-clients": "workspace:*",
+    "fastify": "^4.28.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  }
+}

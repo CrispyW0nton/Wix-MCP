@@ -1,0 +1,36 @@
+{
+  "name": "wix-mcp",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Hybrid Wix dashboard control plane: MCP server + Wix integration backend + dashboard bridge + browser automation fallback.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.10.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "build": "pnpm -r --filter \"./packages/**\" build && pnpm -r --filter \"./apps/**\" build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "eslint \"{apps,packages}/**/src/**/*.{ts,tsx}\"",
+    "format": "prettier --write \"{apps,packages}/**/*.{ts,tsx,json,md}\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev:mcp": "pnpm --filter @wix-mcp/mcp-server dev",
+    "dev:backend": "pnpm --filter @wix-mcp/wix-backend dev",
+    "clean": "pnpm -r exec rimraf dist .turbo node_modules/.cache"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.3",
+    "zod": "^3.23.8"
+  }
+}

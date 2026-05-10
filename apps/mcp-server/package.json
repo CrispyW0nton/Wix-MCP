@@ -1,0 +1,34 @@
+{
+  "name": "@wix-mcp/mcp-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "wix-mcp-server": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@wix-mcp/audit": "workspace:*",
+    "@wix-mcp/capability-registry": "workspace:*",
+    "@wix-mcp/config": "workspace:*",
+    "@wix-mcp/core": "workspace:*",
+    "@wix-mcp/executors": "workspace:*",
+    "@wix-mcp/shared-types": "workspace:*",
+    "@wix-mcp/tool-definitions": "workspace:*",
+    "@wix-mcp/wix-auth": "workspace:*",
+    "@wix-mcp/wix-clients": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  }
+}

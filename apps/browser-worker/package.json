@@ -1,0 +1,25 @@
+{
+  "name": "@wix-mcp/browser-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "playwright:install": "playwright install --with-deps chromium"
+  },
+  "dependencies": {
+    "@wix-mcp/config": "workspace:*",
+    "@wix-mcp/core": "workspace:*",
+    "fastify": "^4.28.1",
+    "playwright": "^1.45.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  }
+}
