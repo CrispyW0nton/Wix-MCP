@@ -140,24 +140,42 @@ domain call.
 
 ## Status
 
-This is a **production-shaped scaffold** with the first 10 tools wired
-end-to-end against the typed HTTP client. The remaining tools listed in
-`docs/COVERAGE_MATRIX.md` follow the same pattern; each is a one-file
-addition.
+This is a **production-shaped scaffold** with 17 tools wired end-to-end
+against the typed HTTP client, including the full eCommerce finance
+vertical (`refund`, `capture`, `void`, `update_payment_status`) under
+strict plan/execute, confirm, and dry-run guards. The remaining tools
+listed in `docs/COVERAGE_MATRIX.md` follow the same pattern; each is a
+one-file addition.
+
+### Currently wired tools
+
+Foundation: `wix.get_capabilities`, `wix.list_sites`,
+`wix.get_app_instance`.
+
+CRM / messaging: `contacts.list`, `contacts.create`,
+`inbox.list_conversations`, `inbox.send_message`.
+
+Marketing: `email_marketing.list_campaigns`.
+
+eCommerce orders + finance: `ecom_orders.list`, `ecom_orders.get_order`,
+`ecom_orders.refund_plan`, `ecom_orders.refund_execute`,
+`ecom_orders.capture_payment_plan`, `ecom_orders.capture_payment_execute`,
+`ecom_orders.void_payment_plan`, `ecom_orders.void_payment_execute`,
+`ecom_orders.update_payment_status`.
 
 ### Build & test status
 
 - `pnpm -r typecheck` — passes across all 13 buildable packages/apps.
-- `pnpm test` — 17 tests across 4 suites: policy engine, capability registry,
-  redaction, hybrid router.
+- `pnpm test` — passing across policy engine, capability registry,
+  redaction, hybrid router, and refund-execute behavior suites.
 - `pnpm build` — clean across all packages and all four apps.
 
 ### Roadmap (next vertical slice)
 
 In priority order against `docs/COVERAGE_MATRIX.md`:
 
-1. eCommerce finance: `ecom_orders.refund_execute`,
-   `update_payment_status`, `capture_payment_*`, `void_payment_*`.
+1. ~~eCommerce finance~~ ✅ shipped: refund/capture/void plan+execute,
+   `update_payment_status`, `get_order`.
 2. `pricing_plans.mark_offline_order_paid` (typed client already exists).
 3. Email marketing writes: `send_test`, `reuse_campaign`,
    `publish_campaign_plan` / `publish_campaign_execute`.

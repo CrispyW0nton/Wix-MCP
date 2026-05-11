@@ -34,11 +34,14 @@ Status legend:
 | Email Marketing       | email_marketing.publish_plan / execute        | api         | planned    | Plan/execute mandatory.                                                |
 | Email Marketing       | email_marketing.create_campaign_via_dashboard | bridge/auto | planned    | API does NOT support brand-new campaign creation; UI fallback needed. |
 | eCommerce Orders      | ecom_orders.list                              | api         | api        |                                                                       |
+| eCommerce Orders      | ecom_orders.get_order                         | api         | api        | Single-order fetch; powers plan/execute tools.                         |
 | eCommerce Orders      | ecom_orders.refund_plan                       | api         | api        | Reads transaction refundability.                                       |
-| eCommerce Orders      | ecom_orders.refund_execute                    | api         | planned    | High risk; plan/execute split.                                         |
-| eCommerce Orders      | ecom_orders.capture_payment_*                 | api         | planned    |                                                                       |
-| eCommerce Orders      | ecom_orders.void_payment_*                    | api         | planned    |                                                                       |
-| eCommerce Orders      | ecom_orders.update_payment_status             | api         | planned    |                                                                       |
+| eCommerce Orders      | ecom_orders.refund_execute                    | api         | api        | High risk. confirm + FEATURE_DESTRUCTIVE_WRITES, dryRun supported.     |
+| eCommerce Orders      | ecom_orders.capture_payment_plan              | api         | api        | Lists capturable transactions.                                         |
+| eCommerce Orders      | ecom_orders.capture_payment_execute           | api         | api        | High risk. confirm + FEATURE_DESTRUCTIVE_WRITES, dryRun supported.     |
+| eCommerce Orders      | ecom_orders.void_payment_plan                 | api         | api        | Lists voidable transactions.                                           |
+| eCommerce Orders      | ecom_orders.void_payment_execute              | api         | api        | High risk. confirm + FEATURE_DESTRUCTIVE_WRITES, dryRun supported.     |
+| eCommerce Orders      | ecom_orders.update_payment_status             | api         | api        | Medium risk. confirm required.                                         |
 | eCommerce Orders      | ecom_orders.cancel_*                          | api         | planned    |                                                                       |
 | Pricing Plans         | pricing_plans.mark_offline_order_paid         | api         | planned    | `markAsPaid`.                                                         |
 | Pricing Plans         | pricing_plans.list_orders / pause / resume    | api         | planned    |                                                                       |
